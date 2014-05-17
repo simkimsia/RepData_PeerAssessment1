@@ -1,5 +1,5 @@
-## return the mean_total_steps as well
-display_histogram <- function (dataset) {
+## return the total_steps_per_day dataset
+get_total_steps_per_day <- function (dataset) {
   # aggregate data by date, returning sums
   # for numeric variables
   dataset$steps <- as.numeric(dataset$steps)
@@ -17,6 +17,5 @@ display_histogram <- function (dataset) {
     xlab("Days") +
     ylab("Total steps") +
     ggtitle("Total steps every day")
-  mean_total_steps <- mean(total_steps_per_day$total_steps)
-  return(mean_total_steps)
+  return (total_steps_per_day)
 }
