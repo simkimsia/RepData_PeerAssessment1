@@ -11,7 +11,7 @@ This README is divided into 2 separate files:
 
 # Assumptions
 
- 1. Evaluator is using the activity dataset zip file from the root folder of this project repo.
+ 1. Evaluator is using the activity dataset zip file and the csv file from the root folder of this project repo.
  2. Evaluator is using either Windows or Mac
  3. Evaluator has installed the package `sqldf`
  
