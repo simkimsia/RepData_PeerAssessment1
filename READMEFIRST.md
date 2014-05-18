@@ -13,19 +13,18 @@ This README is divided into 2 separate files:
 
  1. Evaluator is using the activity dataset zip file and the csv file from the root folder of this project repo.
  2. Evaluator is using either Windows or Mac
- 3. Evaluator has installed the package `sqldf`
+ 3. Evaluator has installed the packages `sqldf`, `ggplot2`
  
 # How to begin
 
- 1. Go <a href="https://github.com/rdpeng/ExData_Plotting1"> Roger Peng's repo</a> and fork the project
- 2. Read the README and download the <a href="https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip">zip file</a>.
+ 1. Go <a href="http://github.com/rdpeng/RepData_PeerAssessment1"> Roger Peng's repo</a> and fork the project
+ 2. Read the README and unzip the activity zip file.
  3. Realize that:
-   - the text file is semi colon delimited
+   - the csv file is comma delimited
    - you are supposed to load the data from the text file unzipped from the zip file
-   - you need only a subset of the data in the text file
-   - the subset needed falls into 2 dates 1/2/2007 and 2/2/2007
- 4. Get the data subset correctly and you should see 2880 obs. of 9 variables. This is largely taken care of by my `load_data.R` script
- 5. Create a plot script for each scenario. In my case they are `plot1.R`, `plot2.R`, `plot3.R`, `plot4.R`. Imaginative naming, I know. :)
+ 4. Get the dataset correctly and you should see 17568 obs. of 3 variables. This is largely taken care of by my `load_data.R` script
+ 5. Fill in the Rmarkdown file `PA1_template.Rmd` accordingly and answer the questions written inside. Feel free to write functions inside separate files and then source them inside the Rmd.
+ 6. Do run the plotting functions inside the Rmd file in order to display them inside the Rmd.
  
 
 

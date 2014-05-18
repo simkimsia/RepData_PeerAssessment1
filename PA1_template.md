@@ -176,4 +176,43 @@ new_median_total_steps
 ```
 
 
+Do these values differ from the estimates from the first part of the assignment? 
+
+**Yes they differ from the first part.**
+
+What is the impact of imputing missing data on the estimates of the total daily number of steps?
+
+**The mean and median have increased after the imputting. Also the mean and median have now converged to be the same value.**
+
 ## Are there differences in activity patterns between weekdays and weekends?
+
+```r
+source("weekday_weekend.R")
+# determine day of the week for each record
+dataset_with_days <- add_weekday_weekend(dataset)
+# have two subsets: 1 for weekdays 1 for weekends
+weekday_subset <- get_weekday_records(dataset_with_days)
+weekend_subset <- get_weekend_records(dataset_with_days)
+# apply the get_mean_steps_per_interval for each subset
+mean_steps_per_interval_weekday <- get_mean_steps_per_interval(weekday_subset)
+mean_steps_per_interval_weekend <- get_mean_steps_per_interval(weekend_subset)
+# add the column weekday and assign the value 'weekday' for the weekday
+# subset after getting the mean_steps_per_interval
+mean_steps_per_interval_weekday$weekday <- c("weekday")
+# add the column weekday and assign the value 'weekend' for the weekend
+# subset after getting the mean_steps_per_interval
+mean_steps_per_interval_weekend$weekday <- c("weekend")
+
+# merge the two subsets vertically
+mean_steps_per_interval_by_weekday <- rbind(mean_steps_per_interval_weekend, 
+    mean_steps_per_interval_weekday)
+
+# Create the time series plot
+library(ggplot2)
+ggplot(mean_steps_per_interval_by_weekday, aes(x = intervals, y = mean_steps, 
+    group = weekday)) + geom_line(colour = "#0000CC") + xlab("Interval") + ylab("Number of steps") + 
+    facet_wrap(~weekday, nrow = 2) + ggtitle("Mean steps across weekdays / weekends for all 5-min intervals")
+```
+
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
+
