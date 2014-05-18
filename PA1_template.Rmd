@@ -6,6 +6,11 @@
 source("load_data.R")
 
 dataset <- load_data()
+# raw_dataset is the dataset without conversion of datatypes
+raw_dataset <- dataset
+
+# need to convert steps to numeric after loading
+dataset$steps <- as.numeric(dataset$steps)
 ```
 
 ## What is mean total number of steps taken per day?
@@ -64,8 +69,8 @@ max_interval[1, "max_mean"]
 ```{r}
 source("imputing_missing_values.R")
 
-missing_values <- find_count_missing_values(dataset)
-
+missing_values <- find_count_missing_values(raw_dataset)
+missing_values
 ```
 **Number of missing values :** 
 ```{r} 
@@ -140,3 +145,5 @@ mean_steps_per_interval_by_weekday <- rbind(mean_steps_per_interval_weekend, mea
     ggtitle("Mean steps across weekdays / weekends for all 5-min intervals")
 
 ```
+
+**YES, there are differences in activity patterns between weekdays and weekends.**

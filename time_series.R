@@ -2,7 +2,6 @@
 get_mean_steps_per_interval <- function (dataset) {
   # aggregate data by 5 min interval, returning mean
   # for numeric variables
-  dataset$steps <- as.numeric(dataset$steps)
   mean_steps_per_interval <-aggregate(dataset$steps, by=list(dataset$interval), 
                                   FUN=mean, na.rm=TRUE)
   
@@ -10,7 +9,6 @@ get_mean_steps_per_interval <- function (dataset) {
   cnames <- c("intervals", "mean_steps")
   colnames(mean_steps_per_interval) <- cnames
   
-
   return (mean_steps_per_interval)
 }
 

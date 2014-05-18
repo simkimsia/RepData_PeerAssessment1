@@ -2,7 +2,6 @@
 get_total_steps_per_day <- function (dataset) {
   # aggregate data by date, returning sums
   # for numeric variables
-  dataset$steps <- as.numeric(dataset$steps)
   total_steps_per_day <-aggregate(dataset$steps, by=list(dataset$date), 
                                   FUN=sum, na.rm=TRUE)
   

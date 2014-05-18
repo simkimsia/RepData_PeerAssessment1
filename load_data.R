@@ -3,6 +3,6 @@ load_data <- function () {
     library(sqldf)
     query <- "SELECT * from file"
     dataset <- read.csv.sql("./activity.csv", sql=query)
-    dataset$steps <- as.numeric(dataset$steps)
+    
     return (dataset)
 }

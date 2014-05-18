@@ -19,6 +19,17 @@ dataset <- load_data()
 
 ```
 ## Warning: closing unused connection 5 (./activity.csv)
+```
+
+```r
+# raw_dataset is the dataset without conversion of datatypes
+raw_dataset <- dataset
+
+# need to convert steps to numeric after loading
+dataset$steps <- as.numeric(dataset$steps)
+```
+
+```
 ## Warning: NAs introduced by coercion
 ```
 
@@ -113,7 +124,13 @@ max_interval[1, "max_mean"]
 ```r
 source("imputing_missing_values.R")
 
-missing_values <- find_count_missing_values(dataset)
+missing_values <- find_count_missing_values(raw_dataset)
+missing_values
+```
+
+```
+##   missing
+## 1    2304
 ```
 
 **Number of missing values :** 
@@ -123,7 +140,7 @@ missing_values[1, "missing"]
 ```
 
 ```
-## [1] 0
+## [1] 2304
 ```
 
 
@@ -216,3 +233,5 @@ ggplot(mean_steps_per_interval_by_weekday, aes(x = intervals, y = mean_steps,
 
 ![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
 
+
+**YES, there are differences in activity patterns between weekdays and weekends.**
