@@ -42,10 +42,8 @@ source("mean_total_steps_every_day.R")
 total_steps_per_day <- get_total_steps_per_day(dataset)
 
 ## draw the histogram
-library(ggplot2)
-ggplot(total_steps_per_day, aes(x = days, y = total_steps)) + geom_bar(stat = "identity", 
-    width = 1, aes(fill = "red"), colour = "#CC0000") + xlab("Days") + ylab("Total steps") + 
-    ggtitle("Total steps every day")
+hist(total_steps_per_day$total_steps, col = "red", xlab = "Number of steps", 
+    main = "Total Number of Steps Taken Each Day")
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
@@ -56,26 +54,10 @@ mean_total_steps <- mean(total_steps_per_day$total_steps)
 median_total_steps <- median(total_steps_per_day$total_steps)
 ```
 
-**Mean total number of steps taken per day is:** 
 
-```r
-mean_total_steps
-```
+**Mean** total number of steps taken per day is: **9354**
 
-```
-## [1] 9354
-```
-
-**Median total number of steps taken per day is:** 
-
-```r
-median_total_steps
-```
-
-```
-## [1] 10395
-```
-
+**Median** total number of steps taken per day is: **10395**
 
 ## What is the average daily activity pattern?
 
@@ -90,34 +72,16 @@ ggplot(mean_steps_per_interval, aes(x = intervals, y = mean_steps)) + geom_line(
     xlab("Intervals") + ylab("Mean steps") + ggtitle("Mean steps across all days for all 5-min intervals")
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
 
 ```r
 
 max_interval <- find_max_interval(mean_steps_per_interval)
 ```
 
-**Interval with the max mean steps is:** 
+**Interval** with the **maximum** mean steps is: **835**
 
-```r
-max_interval[1, "intervals"]
-```
-
-```
-## [1] 835
-```
-
-
-**It has recorded the following mean steps :** 
-
-```r
-max_interval[1, "max_mean"]
-```
-
-```
-## [1] 206.2
-```
-
+It has recorded the following mean steps : **206.2**
 
 ## Imputing missing values
 
@@ -125,24 +89,9 @@ max_interval[1, "max_mean"]
 source("imputing_missing_values.R")
 
 missing_values <- find_count_missing_values(raw_dataset)
-missing_values
 ```
 
-```
-##   missing
-## 1    2304
-```
-
-**Number of missing values :** 
-
-```r
-missing_values[1, "missing"]
-```
-
-```
-## [1] 2304
-```
-
+Number of **missing** values :**2304**
 
 Now replacing NAs with the mean steps in all the 5-min intervals
 
@@ -158,13 +107,11 @@ Now creating the histogram for the new dataset with the values replaced
 new_total_steps_per_day <- get_total_steps_per_day(replaced_with_5min_mean_dataset)
 
 ## draw the histogram
-library(ggplot2)
-ggplot(new_total_steps_per_day, aes(x = days, y = total_steps)) + geom_bar(stat = "identity", 
-    width = 1, aes(fill = "green"), fill = "#66FF66", colour = "#00CC00") + 
-    xlab("Days") + ylab("Total steps") + ggtitle("Total steps every day for dataset with NAs replaced")
+hist(new_total_steps_per_day$total_steps, col = "green", xlab = "Number of steps", 
+    main = "Total steps every day where NAs replaced by 5 min interval means")
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
 
 ```r
 
@@ -172,26 +119,9 @@ new_mean_total_steps <- mean(new_total_steps_per_day$total_steps)
 new_median_total_steps <- median(new_total_steps_per_day$total_steps)
 ```
 
-**Mean total number of steps taken per day for dataset with NAs replaced is:** 
+**Mean** total number of steps taken per day for dataset with NAs replaced is: **10766**
 
-```r
-new_mean_total_steps
-```
-
-```
-## [1] 10766
-```
-
-**Median total number of steps taken per day for dataset with NAs replaced is:** 
-
-```r
-new_median_total_steps
-```
-
-```
-## [1] 10766
-```
-
+**Median** total number of steps taken per day for dataset with NAs replaced is: **10766**
 
 Do these values differ from the estimates from the first part of the assignment? 
 
@@ -231,7 +161,7 @@ ggplot(mean_steps_per_interval_by_weekday, aes(x = intervals, y = mean_steps,
     facet_wrap(~weekday, nrow = 2) + ggtitle("Mean steps across weekdays / weekends for all 5-min intervals")
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
 
 
 **YES, there are differences in activity patterns between weekdays and weekends.**

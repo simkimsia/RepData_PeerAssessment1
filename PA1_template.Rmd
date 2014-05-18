@@ -20,24 +20,15 @@ source("mean_total_steps_every_day.R")
 total_steps_per_day <- get_total_steps_per_day(dataset)
 
   ## draw the histogram
-  library(ggplot2)
-  ggplot(total_steps_per_day, aes(x=days, y=total_steps)) + 
-    geom_bar(stat='identity', width=1, aes(fill="red"), colour="#CC0000") + 
-    xlab("Days") +
-    ylab("Total steps") +
-    ggtitle("Total steps every day")
+  hist(total_steps_per_day$total_steps, col = "red", xlab = "Number of steps", main = "Total Number of Steps Taken Each Day")
 
 mean_total_steps <- mean(total_steps_per_day$total_steps)
 median_total_steps <- median(total_steps_per_day$total_steps)
 ```
-**Mean total number of steps taken per day is:** 
-```{r} 
-mean_total_steps 
-```
-**Median total number of steps taken per day is:** 
-```{r} 
-median_total_steps 
-```
+
+**Mean** total number of steps taken per day is: **`r format(mean_total_steps, scientific=FALSE, digits=4) `**
+
+**Median** total number of steps taken per day is: **`r format(median_total_steps, scientific=FALSE, digits=4) `**
 
 ## What is the average daily activity pattern?
 ```{r}
@@ -55,27 +46,17 @@ mean_steps_per_interval <- get_mean_steps_per_interval(dataset)
 
 max_interval <- find_max_interval(mean_steps_per_interval)
 ```
-**Interval with the max mean steps is:** 
-```{r} 
-max_interval[1, "intervals"]
-```
+**Interval** with the **maximum** mean steps is: **`r format(max_interval[1, "intervals"], scientific=FALSE, digits=4) `**
 
-**It has recorded the following mean steps :** 
-```{r} 
-max_interval[1, "max_mean"]
-```
+It has recorded the following mean steps : **`r format(max_interval[1, "max_mean"], scientific=FALSE, digits=4) `**
 
 ## Imputing missing values
 ```{r}
 source("imputing_missing_values.R")
 
 missing_values <- find_count_missing_values(raw_dataset)
-missing_values
 ```
-**Number of missing values :** 
-```{r} 
-missing_values[1, "missing"]
-```
+Number of **missing** values :**`r format(missing_values[1, "missing"], scientific=FALSE, digits=4) `**
 
 Now replacing NAs with the mean steps in all the 5-min intervals
 ```{r}
@@ -89,24 +70,14 @@ Now creating the histogram for the new dataset with the values replaced
 new_total_steps_per_day <- get_total_steps_per_day(replaced_with_5min_mean_dataset)
 
   ## draw the histogram
-  library(ggplot2)
-  ggplot(new_total_steps_per_day, aes(x=days, y=total_steps)) + 
-    geom_bar(stat='identity', width=1, aes(fill="green"), fill="#66FF66", colour="#00CC00") + 
-    xlab("Days") +
-    ylab("Total steps") +
-    ggtitle("Total steps every day for dataset with NAs replaced")
+  hist(new_total_steps_per_day$total_steps, col = "green", xlab = "Number of steps", main = "Total steps every day where NAs replaced by 5 min interval means")
 
 new_mean_total_steps <- mean(new_total_steps_per_day$total_steps)
 new_median_total_steps <- median(new_total_steps_per_day$total_steps)
 ```
-**Mean total number of steps taken per day for dataset with NAs replaced is:** 
-```{r} 
-new_mean_total_steps 
-```
-**Median total number of steps taken per day for dataset with NAs replaced is:** 
-```{r} 
-new_median_total_steps 
-```
+**Mean** total number of steps taken per day for dataset with NAs replaced is: **`r format(new_mean_total_steps, scientific=FALSE, digits=4) `**
+
+**Median** total number of steps taken per day for dataset with NAs replaced is: **`r format(new_median_total_steps, scientific=FALSE, digits=4) `**
 
 Do these values differ from the estimates from the first part of the assignment? 
 
