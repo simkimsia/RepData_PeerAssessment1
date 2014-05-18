@@ -61,7 +61,46 @@ max_interval[1, "max_mean"]
 ```
 
 ## Imputing missing values
+```{r}
+source("imputing_missing_values.R")
 
+missing_values <- find_count_missing_values(dataset)
 
+```
+**Number of missing values :** 
+```{r} 
+missing_values[1, "missing"]
+```
+
+Now replacing NAs with the mean steps in all the 5-min intervals
+```{r}
+
+replaced_with_5min_mean_dataset <- replace_missing_values(dataset, mean_steps_per_interval)
+
+```
+
+Now creating the histogram for the new dataset with the values replaced
+```{r}
+new_total_steps_per_day <- get_total_steps_per_day(replaced_with_5min_mean_dataset)
+
+  ## draw the histogram
+  library(ggplot2)
+  ggplot(new_total_steps_per_day, aes(x=days, y=total_steps)) + 
+    geom_bar(stat='identity', width=1, aes(fill="green"), fill="#66FF66", colour="#00CC00") + 
+    xlab("Days") +
+    ylab("Total steps") +
+    ggtitle("Total steps every day for dataset with NAs replaced")
+
+new_mean_total_steps <- mean(new_total_steps_per_day$total_steps)
+new_median_total_steps <- median(new_total_steps_per_day$total_steps)
+```
+**Mean total number of steps taken per day for dataset with NAs replaced is:** 
+```{r} 
+new_mean_total_steps 
+```
+**Median total number of steps taken per day for dataset with NAs replaced is:** 
+```{r} 
+new_median_total_steps 
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?
